@@ -31,7 +31,7 @@ function Register() {
         try {
 
             const response = await API.post(
-                "/auth/register",
+                "/api/auth/register",
                 {
                     name,
                     email,
