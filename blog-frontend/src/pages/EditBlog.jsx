@@ -54,9 +54,7 @@ function EditBlog() {
         },
         {
           headers: {
-            authorization: JSON.parse(
-              localStorage.getItem("user")
-            ).token,
+            authorization: localStorage.getItem("token"),
           },
         }
       );

@@ -52,9 +52,7 @@ function Home() {
                 `/blogs/${id}`,
                 {
                     headers: {
-                        authorization: JSON.parse(
-                            localStorage.getItem("user")
-                        ).token,
+                       authorization: localStorage.getItem("token"),
                     },
                 }
             );
@@ -81,9 +79,7 @@ function Home() {
                 },
                 {
                     headers: {
-                        authorization: JSON.parse(
-                            localStorage.getItem("user")
-                        ).token,
+                        authorization: localStorage.getItem("token"),
                     },
                 }
             );
@@ -287,7 +283,7 @@ function Home() {
 
 
 
-                                            {currentUser?.user?.id === featuredBlog.author?._id && (
+                                            {currentUser?.id === featuredBlog.author?._id && (
                                                 <a href={`/edit/${featuredBlog._id}`}>
 
                                                     <span className="relative z-10 flex items-center gap-2">
@@ -305,7 +301,7 @@ function Home() {
 
 
 
-                                            {currentUser?.user?.id === featuredBlog.author?._id && (
+                                            {currentUser?.id === featuredBlog.author?._id && (
                                                 <button
                                                     onClick={() => setShowFeaturedDeleteModal(true)}
                                                     className="group bg-zinc-800/80 hover:bg-red-500/20 border border-zinc-700 hover:border-red-500 transition-all duration-300 px-5 py-2.5 rounded-2xl font-semibold text-zinc-300 hover:text-red-400"
