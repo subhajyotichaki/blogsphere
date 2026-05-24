@@ -16,8 +16,8 @@ function Home() {
 
     const [blogs, setBlogs] = useState([]);
 
-    const currentUser = JSON.parse(
-        localStorage.getItem("user")
+    const currentUser = JSON.parsecurrentUser?.id
+    localStorage.getItem("user")
     );
 
     const [search, setSearch] = useState("");
@@ -52,7 +52,9 @@ function Home() {
                 `/blogs/${id}`,
                 {
                     headers: {
-                       authorization: localStorage.getItem("token"),
+                        authorization: JSON.parse(
+                            localStorage.getItem("user")
+                        ).token,
                     },
                 }
             );
@@ -79,7 +81,9 @@ function Home() {
                 },
                 {
                     headers: {
-                        authorization: localStorage.getItem("token"),
+                        authorization: JSON.parse(
+                            localStorage.getItem("user")
+                        ).token,
                     },
                 }
             );
@@ -217,7 +221,7 @@ function Home() {
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
-                               className="relative overflow-hidden rounded-[20px] md:rounded-[44px] border border-zinc-800 bg-gradient-to-br from-zinc-900/90 via-zinc-900/70 to-black/80 backdrop-blur-2xl p-3 sm:p-7 md:p-14 shadow-[0_0_80px_rgba(168,85,247,0.08)]"
+                                className="relative overflow-hidden rounded-[20px] md:rounded-[44px] border border-zinc-800 bg-gradient-to-br from-zinc-900/90 via-zinc-900/70 to-black/80 backdrop-blur-2xl p-3 sm:p-7 md:p-14 shadow-[0_0_80px_rgba(168,85,247,0.08)]"
                             >
 
                                 <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500/20 blur-3xl rounded-full" />
@@ -283,7 +287,7 @@ function Home() {
 
 
 
-                                            {currentUser?.id === featuredBlog.author?._id && (
+                                            {currentUser?.user?.id === featuredBlog.author?._id && (
                                                 <a href={`/edit/${featuredBlog._id}`}>
 
                                                     <span className="relative z-10 flex items-center gap-2">
@@ -301,7 +305,7 @@ function Home() {
 
 
 
-                                            {currentUser?.id === featuredBlog.author?._id && (
+                                            {currentUser?.user?.id === featuredBlog.author?._id && (
                                                 <button
                                                     onClick={() => setShowFeaturedDeleteModal(true)}
                                                     className="group bg-zinc-800/80 hover:bg-red-500/20 border border-zinc-700 hover:border-red-500 transition-all duration-300 px-5 py-2.5 rounded-2xl font-semibold text-zinc-300 hover:text-red-400"

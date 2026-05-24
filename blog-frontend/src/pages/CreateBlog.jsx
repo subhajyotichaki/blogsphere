@@ -50,7 +50,7 @@ function CreateBlog() {
         },
         {
           headers: {
-            authorization: localStorage.getItem("token"),
+            authorization: user.token,
           },
         }
       );

@@ -28,17 +28,15 @@ function AuthProvider({ children }) {
 
 
 
-    const login = (data) => {
+   const login = (data) => {
 
     localStorage.setItem(
         "user",
-        JSON.stringify(data.user)
+        JSON.stringify(data)
     );
 
-    localStorage.setItem(
-        "token",
-        data.token
-    );
+    setUser(data);
+};
 
     setUser(data.user);
 };
