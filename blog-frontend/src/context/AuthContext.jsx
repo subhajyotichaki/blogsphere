@@ -4,14 +4,11 @@ import {
     useState,
 } from "react";
 
-
 export const AuthContext = createContext();
-
 
 function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
-
 
     useEffect(() => {
 
@@ -26,35 +23,24 @@ function AuthProvider({ children }) {
 
     }, []);
 
+    const login = (data) => {
 
+        localStorage.setItem(
+            "user",
+            JSON.stringify(data)
+        );
 
-   const login = (data) => {
-
-    localStorage.setItem(
-        "user",
-        JSON.stringify(data)
-    );
-
-    setUser(data);
-};
-
-    setUser(data.user);
-};
-
-
+        setUser(data);
+    };
 
     const logout = () => {
 
         localStorage.removeItem("user");
 
-        localStorage.removeItem("token");
-
         setUser(null);
 
         window.location.href = "/login";
     };
-
-
 
     return (
 

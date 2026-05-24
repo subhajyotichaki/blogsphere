@@ -16,8 +16,8 @@ function Home() {
 
     const [blogs, setBlogs] = useState([]);
 
-    const currentUser = JSON.parsecurrentUser?.id
-    localStorage.getItem("user")
+    const currentUser = JSON.parse(
+        localStorage.getItem("user")
     );
 
     const [search, setSearch] = useState("");
@@ -28,8 +28,8 @@ function Home() {
         fetchBlogs();
     }, []);
 
-
     const fetchBlogs = async () => {
+
         try {
 
             const response = await API.get("/blogs");
@@ -37,14 +37,13 @@ function Home() {
             setBlogs(response.data.reverse());
 
         } catch (error) {
+
             console.log(error);
+
         }
     };
 
-
     const deleteBlog = async (id) => {
-
-
 
         try {
 
@@ -64,7 +63,9 @@ function Home() {
             fetchBlogs();
 
         } catch (error) {
+
             console.log(error);
+
         }
     };
 
@@ -112,14 +113,13 @@ function Home() {
     const featuredBlog =
         blogs.find((blog) => blog.featured) || blogs[0];
 
-
     return (
+
         <div className="min-h-screen bg-black text-white overflow-hidden">
 
             <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/20 blur-3xl rounded-full" />
 
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full" />
-
 
             <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 pt-16 md:pt-24 pb-14 md:py-20">
 
@@ -136,23 +136,17 @@ function Home() {
 
                         <div className="group relative overflow-hidden w-full max-w-6xl rounded-[24px] md:rounded-[40px] border border-white/10 bg-gradient-to-br from-zinc-900/90 via-zinc-900/70 to-black/80 backdrop-blur-2xl px-4 sm:px-10 md:px-14 py-4 md:py-12">
 
-
                             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-blue-500/5" />
 
-
                             <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-70" />
-
 
                             <div className="absolute -top-20 right-0 w-80 h-80 bg-purple-500/20 blur-3xl rounded-full" />
 
                             <div className="absolute -bottom-20 left-0 w-80 h-80 bg-blue-500/20 blur-3xl rounded-full" />
 
-
                             <div className="absolute top-10 right-16 w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
 
                             <div className="absolute bottom-10 left-20 w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-
-
 
                             <div className="relative z-10 text-center">
 
@@ -160,15 +154,9 @@ function Home() {
                                     BLOG PLATFORM
                                 </p>
 
-
                                 <h1 className="text-[1.8rem] sm:text-5xl md:text-7xl font-black tracking-tight leading-none bg-gradient-to-r from-white via-purple-200 to-blue-300 bg-clip-text text-transparent">
-
                                     Discover Ideas
-
                                 </h1>
-
-
-
 
                             </div>
 
@@ -177,8 +165,6 @@ function Home() {
                     </div>
 
                 </motion.div>
-
-
 
                 <div className="max-w-full md:max-w-xl mx-auto mb-6 md:mb-16">
 
@@ -195,8 +181,6 @@ function Home() {
                     </div>
 
                 </div>
-
-
 
                 {filteredBlogs.length === 0 ? (
 
@@ -233,17 +217,12 @@ function Home() {
                                     </p>
 
                                     <h2 className="text-2xl sm:text-4xl md:text-5xl font-black leading-[0.95] mb-5">
-
                                         {featuredBlog.title}
-
                                     </h2>
 
                                     <p className="text-zinc-300 text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-3xl">
-
                                         {featuredBlog.content}
-
                                     </p>
-
 
                                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 w-full">
 
@@ -254,6 +233,7 @@ function Home() {
                                             </div>
 
                                             <div>
+
                                                 <p className="font-semibold text-lg">
                                                     {featuredBlog.author?.name}
                                                 </p>
@@ -261,10 +241,10 @@ function Home() {
                                                 <p className="text-zinc-500">
                                                     Featured Author
                                                 </p>
+
                                             </div>
 
                                         </div>
-
 
                                         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto md:ml-auto">
 
@@ -285,9 +265,8 @@ function Home() {
 
                                             </a>
 
-
-
                                             {currentUser?.user?.id === featuredBlog.author?._id && (
+
                                                 <a href={`/edit/${featuredBlog._id}`}>
 
                                                     <span className="relative z-10 flex items-center gap-2">
@@ -301,11 +280,11 @@ function Home() {
                                                     </span>
 
                                                 </a>
+
                                             )}
 
-
-
                                             {currentUser?.user?.id === featuredBlog.author?._id && (
+
                                                 <button
                                                     onClick={() => setShowFeaturedDeleteModal(true)}
                                                     className="group bg-zinc-800/80 hover:bg-red-500/20 border border-zinc-700 hover:border-red-500 transition-all duration-300 px-5 py-2.5 rounded-2xl font-semibold text-zinc-300 hover:text-red-400"
@@ -326,6 +305,7 @@ function Home() {
                                             )}
 
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -341,11 +321,10 @@ function Home() {
                             confirmText="Delete"
                             onCancel={() => setShowFeaturedDeleteModal(false)}
                             onConfirm={() => {
-                                deleteBlog(featuredBlog._id); setShowFeaturedDeleteModal(false);
+                                deleteBlog(featuredBlog._id);
+                                setShowFeaturedDeleteModal(false);
                             }}
                         />
-
-
 
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -355,12 +334,14 @@ function Home() {
                         >
 
                             {(search ? filteredBlogs : blogs.slice(1)).map((blog) => (
+
                                 <BlogCard
                                     key={blog._id}
                                     blog={blog}
                                     onDelete={deleteBlog}
                                     onFeature={makeFeatured}
                                 />
+
                             ))}
 
                         </motion.div>
@@ -372,6 +353,7 @@ function Home() {
             </div>
 
         </div>
+
     );
 }
 
