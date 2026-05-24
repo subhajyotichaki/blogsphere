@@ -10,14 +10,16 @@ connectDB();
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://blogsphere-umber.vercel.app",
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: "https://blogsphere-umber.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
 
-app.options(/.*/, cors());
+app.use(cors(corsOptions));
+
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 
