@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://blogsphere-api-567t.onrender.com/api",
+  baseURL: "https://blogsphere-5ckb.onrender.com/api",
 });
 
 export default API;
