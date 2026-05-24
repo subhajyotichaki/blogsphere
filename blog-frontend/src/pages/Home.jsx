@@ -51,9 +51,8 @@ function Home() {
                 `/blogs/${id}`,
                 {
                     headers: {
-                        authorization: JSON.parse(
-                            localStorage.getItem("user")
-                        ).token,
+                        authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
+                            }`,
                     },
                 }
             );
@@ -82,9 +81,8 @@ function Home() {
                 },
                 {
                     headers: {
-                        authorization: JSON.parse(
-                            localStorage.getItem("user")
-                        ).token,
+                        authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
+                            }`,
                     },
                 }
             );

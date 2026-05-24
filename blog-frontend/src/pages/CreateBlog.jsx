@@ -50,7 +50,7 @@ function CreateBlog() {
         },
         {
           headers: {
-            authorization: user.token,
+            authorization: `Bearer ${user.token}`,
           },
         }
       );
