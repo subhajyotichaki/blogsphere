@@ -19,7 +19,13 @@ function Landing() {
 
             const response = await API.get("/blogs");
 
-            if (response.data.length > 0) {
+            const featured = response.data.find(
+                (blog) => blog.featured
+            );
+
+            if (featured) {
+                setFeaturedBlog(featured);
+            } else if (response.data.length > 0) {
                 setFeaturedBlog(response.data[0]);
             }
 

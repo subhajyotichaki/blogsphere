@@ -34,7 +34,7 @@ function Home() {
 
             const response = await API.get("/blogs");
 
-            setBlogs(response.data);
+            setBlogs(response.data.reverse());
 
         } catch (error) {
             console.log(error);
