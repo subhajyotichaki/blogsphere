@@ -30,13 +30,18 @@ function AuthProvider({ children }) {
 
     const login = (data) => {
 
-        localStorage.setItem(
-            "user",
-            JSON.stringify(data)
-        );
+    localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+    );
 
-        setUser(data);
-    };
+    localStorage.setItem(
+        "token",
+        data.token
+    );
+
+    setUser(data.user);
+};
 
 
 
