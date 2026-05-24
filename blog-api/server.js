@@ -2,9 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
-const authRoutes = require("./routes/authRoutes");
-const blogRoutes = require("./routes/blogRoutes");
-
 const connectDB = require("./config/db");
 
 dotenv.config();
@@ -15,18 +12,16 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://blogsphere-umber.vercel.app",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
-
-
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/blogs", blogRoutes);
+app.use("/api/blogs", require("./routes/blogRoutes"));
+app.use("/api/auth", require("./routes/authRoutes"));
 
 app.get("/", (req, res) => {
   res.send("Blog API Running");
