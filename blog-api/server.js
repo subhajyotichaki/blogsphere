@@ -12,17 +12,16 @@ const app = express();
 
 const corsOptions = {
   origin: [
-  "https://blogsphere-umber.vercel.app",
-  "https://blogsphere-qbbqvjxeg-subhajyotichakis-projects.vercel.app"
-],
+    "http://localhost:5173",
+    "https://blogsphere-umber.vercel.app",
+    "https://blogsphere-qbbqvjxeg-subhajyotichakis-projects.vercel.app",
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
-
-
 
 app.use(express.json());
 
