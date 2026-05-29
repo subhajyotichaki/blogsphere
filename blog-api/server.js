@@ -15,6 +15,7 @@ const corsOptions = {
     "http://localhost:5173",
     "https://blogsphere-umber.vercel.app",
     "https://blogsphere-qbbqvjxeg-subhajyotichakis-projects.vercel.app",
+    "https://blogsphere-44x27aox-subhajyotichakis-projects.vercel.app",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
