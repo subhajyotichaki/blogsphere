@@ -4,17 +4,14 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 
-
 dotenv.config();
 
-
 connectDB();
-
 
 const app = express();
 
 
-// CORS CONFIG
+// CORS
 const corsOptions = {
 
   origin: function (origin, callback) {
@@ -56,17 +53,24 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-// Middleware
+// IMPORTANT FIX
+app.options("*", cors(corsOptions));
+
+
 app.use(express.json());
 
 
-// Routes
-app.use("/api/blogs", require("./routes/blogRoutes"));
+app.use(
+  "/api/auth",
+  require("./routes/authRoutes")
+);
 
-app.use("/api/auth", require("./routes/authRoutes"));
+app.use(
+  "/api/blogs",
+  require("./routes/blogRoutes")
+);
 
 
-// Test Route
 app.get("/", (req, res) => {
 
   res.send("Blog API Running");
